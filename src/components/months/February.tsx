@@ -30,10 +30,6 @@ const February = () => {
         February
     </h1>
 
-
-
-
-
     {/* days of the week button */}
     <div>
     <Button variant="secondary m-3">S</Button>{''}
@@ -74,6 +70,7 @@ const February = () => {
     <Button variant="secondary m-3">20</Button>{''}
     <Button variant="secondary m-3">21</Button>{''}
     </div>
+
     <div>
     <Button variant="secondary m-3">22</Button>{''}
     <Button variant="secondary m-3">23</Button>{''}
@@ -83,11 +80,11 @@ const February = () => {
     <Button variant="secondary m-3">27</Button>{''}
     <Button variant="secondary m-3">28</Button>{''}
     </div>
+
     <div>
     <Button variant="secondary m-3">29</Button>{''}
     <Button variant="secondary m-3">30</Button>{''}
     <Button variant="secondary m-3">31</Button>{''}
- 
     </div>
 
     {/* days of the week button */}
