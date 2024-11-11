@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Inter";
+  src: url("../../assets/Inter-font.ttf");
+
+}
+
+.bg-lightblue {
+  background-color: #abfbff;
+}
+
+.logo {
+  font-size: 45px;
+  font-family: "Inter";
+}
+
+.routes {
+    gap: 20px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
