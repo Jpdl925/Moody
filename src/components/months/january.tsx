@@ -1,5 +1,6 @@
-import { Container, Image, Nav, Navbar } from "react-bootstrap"
+import { Container, Image, Nav, Navbar, Table } from "react-bootstrap"
 import CalendarImage from '../../assets/Calendar.png';
+import { Button } from "react-bootstrap";
 
 const january = () => {
   return (
@@ -21,6 +22,33 @@ const january = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+    <Container fluid>
+    <Table >
+      <thead>
+        <tr className="text-center">
+          <th><Button className="dayBTN">S</Button></th>
+          <th><Button className="dayBTN">M</Button></th>
+          <th><Button className="dayBTN">T</Button></th>
+          <th><Button className="dayBTN">W</Button></th>
+          <th><Button className="dayBTN">T</Button></th>
+          <th><Button className="dayBTN">F</Button></th>
+          <th><Button className="dayBTN">S</Button></th>
+        </tr>
+      </thead>
+      <tbody className="text-center">
+        <tr>
+          <td><Button className="dayBTN">1</Button></td>
+          <td><Button className="dayBTN">2</Button></td>
+          <td><Button className="dayBTN">3</Button></td>
+          <td><Button className="dayBTN">4</Button></td>
+          <td><Button className="dayBTN">5</Button></td>
+          <td><Button className="dayBTN">6</Button></td>
+          <td><Button className="dayBTN">7</Button></td>
+        </tr>
+      </tbody>
+    </Table>
+    </Container>
     </>
   )
 }

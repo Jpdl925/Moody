@@ -17,3 +17,20 @@ body{
     font-size: 150%;
 }
 /* ------------------------------------------------------------------END OF NAV------------------------------------------------------------------ */
+
+.dayBTN{
+    background-color: #D9D9D9;
+    color: black;
+    pointer-events: none;
+    border-radius: 50%;
+    font-size: calc(1em + 1vw);
+    padding: 20px 45px;
+}
+.calBorder{
+    border: none;
+    border-collapse: collapse;
+}
+.calBorder td,
+.calBorder th{
+    border: none;
+}
