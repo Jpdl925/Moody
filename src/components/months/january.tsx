@@ -1,6 +1,8 @@
 import { Container, Image, Nav, Navbar, Table } from "react-bootstrap"
 import CalendarImage from '../../assets/Calendar.png';
 import { Button } from "react-bootstrap";
+import Calendar from "react-calendar";
+
 
 const january = () => {
   return (
@@ -24,7 +26,8 @@ const january = () => {
     </Navbar>
 
     <Container fluid>
-    <Table >
+      <Calendar showNeighboringMonth={false}/>
+    {/* <Table >
       <thead>
         <tr className="text-center">
           <th><Button className="dayBTN">S</Button></th>
@@ -47,7 +50,7 @@ const january = () => {
           <td><Button className="dayBTN">7</Button></td>
         </tr>
       </tbody>
-    </Table>
+    </Table> */}
     </Container>
     </>
   )
