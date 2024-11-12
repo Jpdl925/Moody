@@ -20,22 +20,24 @@ html, body{
     font-size: 150%;
 }
 /* ------------------------------------------------------------------END OF NAV------------------------------------------------------------------ */
-.react-calendar {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Make the days grid (where the days are shown) take up full height */
-  .react-calendar__month-view__days {
-    flex-grow: 1;               /* Allow the days area to grow and take up available space */
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;  /* Align the days to the top of the container */
-  }
-  
-  /* Optional: To adjust the day tiles if they overflow or you want them to fill the space */
-  .react-calendar__tile {
-    flex: 1 0 14.28%;            /* Make each day tile fill 1/7th of the container width */
-    box-sizing: border-box;      /* Ensure padding doesn't affect the width */
-  }
+.react-calendar__navigation{
+  text-align: center;
+  margin: 0 ;
+}
+.react-calendar__month-view__weekdays{
+  text-align: center;
+  width: 100vw;
+  max-width: 100%;
+}
+.react-calendar__month-view__weekdays__weekday{
+  background-color: gray;
+  border-radius: 50%;
+  padding: 20px;
+
+}
+.react-calendar__month-view__days{
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  max-height: 100%;
+}
