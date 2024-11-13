@@ -84,7 +84,8 @@ const Calendar = () => {
           <button 
                 key={index} 
                 onClick={() => handleDateClick(day)}
-                style={{ padding: '10px', width: '100%', border:'1px solid #ddd', cursor:'pointer'  }}>
+                // style={{ padding: '10px', width: '100%', borderRadius:'20%', border:'1px solid #ddd', cursor:'pointer'  }}>
+                style={{ padding: '10px', height: '100%', width: '30%', borderRadius:'50%', border:'1px solid #ddd', display:'flex', alignItems:'center', justifyContent:'center',cursor:'pointer'  }}>
             {/* <button onClick={() => handleDateClick(day)} style={{width: '100%', padding:'8px'} }></button> */}
             {day.getDate()}
           </button>
