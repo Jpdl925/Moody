@@ -70,7 +70,7 @@ const Calendar = () => {
       {/* Calendar Grid */}
       <div className="calendar-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
         {/* Weekdays Header */}
-        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
           <div key={day} style={{ fontWeight: 'bold' }}>{day}</div>
         ))}
 
