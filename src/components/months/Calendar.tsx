@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavbarComponent from '../navbar/NavbarComponent';
 
 //Helper function to get the days of the month
 const getDaysInMonth = (year: number, month: number) => {
@@ -13,10 +14,15 @@ const getDaysInMonth = (year: number, month: number) => {
 
 // Calendar Component
 const Calendar = () => {
-
+        console.log("hello");
     const today = new Date();
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
+
+    //Funtion to handle a date click
+    const handleDateClick = (date:Date) => {
+            alert(date);
+    };
   
     // Change the month
     const changeMonth = (offset: number) => {
@@ -39,7 +45,10 @@ const Calendar = () => {
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
 
   return (
+
+
     <>
+    <NavbarComponent/>
      <div style={{ textAlign: 'center' }}>
       {/* Month and Year Header */}
       <header>
@@ -56,12 +65,6 @@ const Calendar = () => {
                     <div className="col">   <button onClick={() => changeMonth(1)}>Next</button> </div>
                 </div>
         </div>
-        
-   
-        
-
-        
-     
       </header>
 
       {/* Calendar Grid */}
@@ -78,9 +81,13 @@ const Calendar = () => {
 
         {/* Render Days of the Month */}
         {days.map((day, index) => (
-          <div key={index} style={{ padding: '10px' }}>
+          <button 
+                key={index} 
+                onClick={() => handleDateClick(day)}
+                style={{ padding: '10px', width: '100%', border:'1px solid #ddd', cursor:'pointer'  }}>
+            {/* <button onClick={() => handleDateClick(day)} style={{width: '100%', padding:'8px'} }></button> */}
             {day.getDate()}
-          </div>
+          </button>
         ))}
       </div>
     </div>
