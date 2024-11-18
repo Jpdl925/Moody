@@ -25,7 +25,7 @@ const NavbarComponent = () => {
           </Col>
           <Col className="d-flex justify-content-end">
             <Nav className="p-0 my-0 ms-0 me-4 routes">
-              <Nav.Link href="#" className="p-0 m-0">
+              <Nav.Link as={Link} to="/Calendar" className="p-0 m-0">
                 Moody Calendar
               </Nav.Link>
               <Nav.Link as={Link} to="/AI" className="p-0 m-0">
