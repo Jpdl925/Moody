@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import { useState } from 'react';
 import NavbarComponent from '../navbar/NavbarComponent';
 
 //Helper function to get the days of the month
@@ -71,7 +72,23 @@ const Calendar = () => {
       <div className="calendar-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
         {/* Weekdays Header */}
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
-          <div key={day} style={{ fontWeight: 'bold' }}>{day}</div>
+          <div 
+            key={day} 
+            style={{ 
+              fontWeight: 'bold',
+              width: '20%',
+              padding: '5px',
+              height: '90%',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #ddd',
+              margin: '5px',
+              
+
+            }}
+          >{day}</div>
         ))}
 
         {/* Fill in the empty days at the start */}
@@ -81,14 +98,34 @@ const Calendar = () => {
 
         {/* Render Days of the Month */}
         {days.map((day, index) => (
+          <div 
+            key={index}
+            style={{
+              marginTop: '25px',
+             
+
+            }}
+          >
           <button 
                 key={index} 
                 onClick={() => handleDateClick(day)}
                 // style={{ padding: '10px', width: '100%', borderRadius:'20%', border:'1px solid #ddd', cursor:'pointer'  }}>
-                style={{ padding: '10px', height: '100%', width: '30%', borderRadius:'50%', border:'1px solid #ddd', display:'flex', alignItems:'center', justifyContent:'center',cursor:'pointer'  }}>
+                style={{ 
+                  padding: '5px',
+                  height: '90%', 
+                  width: '20%', 
+                  borderRadius:'50%', 
+                  border:'1px solid #ddd', 
+                  display:'flex', 
+                  alignItems:'center', 
+                  justifyContent:'center',
+                  cursor:'pointer', 
+                  margin: '2px'
+                  
+                  }}>
             {/* <button onClick={() => handleDateClick(day)} style={{width: '100%', padding:'8px'} }></button> */}
             {day.getDate()}
-          </button>
+          </button> </div>
         ))}
       </div>
     </div>
