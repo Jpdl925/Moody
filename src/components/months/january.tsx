@@ -1,5 +1,3 @@
-
-
 import { Container, Modal, Button } from "react-bootstrap";
 import Calendar from "react-calendar";
 import { useState } from "react";
@@ -7,7 +5,7 @@ import NavbarComponent from "../navbar/NavbarComponent";
 import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const January = () => {
+const january = () => {
 
   const [show, setShow] = useState(false);
   const [selectedMood, setSelectedMood] = useState<string>('');
@@ -118,9 +116,4 @@ const January = () => {
   );
 };
 
-export default January;
-
-
-
-
-
+export default january;
