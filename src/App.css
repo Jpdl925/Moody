@@ -1,0 +1,31 @@
+.form-style {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  padding-bottom: 30px !important;
+  display: flex;
+  justify-content: center;
+}
+
+.input-style {
+  border-radius: 10px !important;
+  background-color: #E6E3F3 !important;
+  font-size: 20px !important;
+}
+
+.fullscreen-center {
+  height: 89vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-input {
+  width: 40vw;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #E6E3F3;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}
