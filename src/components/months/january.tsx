@@ -67,17 +67,21 @@ const january = () => {
     return '';
   };
 
+
+
   return (
     <>
     <NavbarComponent />
     <Container fluid>
-      <Calendar
+      <Calendar 
         showNeighboringMonth={false}
         calendarType="gregory"
         nextLabel=">"
         prevLabel="<"
         onClickDay={(date) => handleShow(date)}
         tileClassName={({ date, view }) => getTileClassName({ date, view })}
+        // Grabs only first letter of day for text at top
+        formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
       />
     </Container>
 
