@@ -51,7 +51,7 @@ const LoginComponent = () => {
               </Form.Group>
 
               <div className="text-center mt-3 d-flex flex-column align-items-center">
-                <Button type="submit" className="justify-content-center" style={{ width: '20%' }}>
+                <Button type="submit" className="justify-content-center" style={{ width: '35%' }}>
                   Submit
                 </Button>
                 <button
