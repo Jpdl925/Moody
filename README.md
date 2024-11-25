@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+// Julius Ponce De Leon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+// Date Revised: 11/24/24
 
-Currently, two official plugins are available:
+// Part 2: Frontend Development with React & TypeScript
+Objective:
+To build the user interface and user experience based on the Figma design using React with TypeScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Instructions:
+Setting Up Your Project:
 
-## Expanding the ESLint configuration
+React with TypeScript: Use create-react-app or Vite to bootstrap your project with TypeScript enabled.
+Routing: Implement routing using React Router to navigate between different pages of your app.
+State Management: Use React's useState and useEffect hooks to manage local component state. For global state management, you can use useContext or third-party libraries like Zustand or Redux.
+UI Library: Choose one of the following UI libraries to style your app:
+Chakra UI: For a modular and accessible design system.
+Tailwind CSS: For utility-first styling.
+Bootstrap: For a classic and responsive UI.
+Component Design: Implement reusable components based on your Figma design (e.g., buttons, forms, cards).
+Features to Implement:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Authentication: Create a login/signup page and handle authentication.
+CRUD Functionality: Allow the user to create, read, update, and delete items in your app. For example, if you’re building a task manager, implement task management features.
+Responsive Design: Ensure the application is fully responsive across different screen sizes.
+Form Handling: Use React's form handling techniques to validate input fields and provide user feedback.
+API Integration: Use fetch or axios to make HTTP requests to the backend you will develop in Part 3.
+Submission:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Your front-end code should be pushed to GitHub.
+Submit the GitHub repository link and a live demo of your front-end (using services like Vercel or Netlify).
