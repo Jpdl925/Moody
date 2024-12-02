@@ -14,12 +14,20 @@ const january = () => {
 
   // Need to store a mood given the date
   // This is like key value pairs
-  const [moodData, setMoodData] = useState<Map<string, string>>(new Map());
+  const [moodData, setMoodData] = useState<Map<string, { mood: string; comment: string }>>(new Map());
 
   // Functions to handle modal
   const handleClose = () => setShow(false);
   const handleShow = (date: Date) => {
     setSelectedDate(date);
+    const existingData = moodData.get(date.toDateString());
+    if (existingData) {
+      setSelectedMood(existingData.mood);
+      setComment(existingData.comment);
+    } else {
+      setSelectedMood('');
+      setComment('');
+    }
     setShow(true);
   };
 
@@ -32,7 +40,9 @@ const january = () => {
   const handleSubmit = () => {
     if (selectedDate) {
       // takes the previous mood and updates it to the new one from a certain day
-      setMoodData((prevMoodData) => new Map(prevMoodData.set(selectedDate.toDateString(), selectedMood)));
+      setMoodData((prevMoodData) =>
+        new Map(prevMoodData.set(selectedDate.toDateString(), { mood: selectedMood, comment }))
+      );
     }
     setSelectedMood('');
     setComment('');
@@ -54,15 +64,14 @@ const january = () => {
     };
   };
 
-  // changes the background of the date's tile once a mood is picked
   const getTileClassName = ({ date, view }: { date: Date; view: 'month' | 'year' | 'decade' | 'century' }) => {
     if (view === 'month') {
-      const mood = moodData.get(date.toDateString());
-      if (mood === 'Horrible') return 'horrible-tile';
-      if (mood === 'Bad') return 'bad-tile';
-      if (mood === 'No Complaints') return 'no-complaints-tile';
-      if (mood === 'Good') return 'good-tile';
-      if (mood === 'Amazing') return 'amazing-tile';
+      const data = moodData.get(date.toDateString());
+      if (data?.mood === 'Horrible') return 'horrible-tile';
+      if (data?.mood === 'Bad') return 'bad-tile';
+      if (data?.mood === 'No Complaints') return 'no-complaints-tile';
+      if (data?.mood === 'Good') return 'good-tile';
+      if (data?.mood === 'Amazing') return 'amazing-tile';
     }
     return '';
   };
@@ -71,13 +80,15 @@ const january = () => {
     <>
     <NavbarComponent />
     <Container fluid>
-      <Calendar
+      <Calendar 
         showNeighboringMonth={false}
         calendarType="gregory"
         nextLabel=">"
         prevLabel="<"
         onClickDay={(date) => handleShow(date)}
         tileClassName={({ date, view }) => getTileClassName({ date, view })}
+        // Grabs only first letter of day for text at top
+        formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
       />
     </Container>
 

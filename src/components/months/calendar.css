@@ -1,3 +1,7 @@
+html,
+body{
+  height: 100%;
+}
 .react-calendar {
   width: 100%;
   margin: 40px auto;
@@ -32,13 +36,11 @@
 }
 
 .react-calendar__month-view__weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
+  display: flex;
+  margin-inline: auto;
+  justify-content: center;
+  width: 90%;
+  margin-bottom: 2%;
 }
 
 .react-calendar__month-view__weekdays__weekday {
@@ -46,11 +48,22 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 40px;
   height: 40px;
   margin: auto;
+  padding: 6.5%;
   border-radius: 50%;
-  background-color: #e5e5e5;
+  background-color: lightgray;
+}
+
+.react-calendar__month-view__days{
+  display: flex;
+  margin-inline: auto;
+  width: 90%;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
 }
 
 .react-calendar__tile {
@@ -58,13 +71,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 50%; /* Make tiles circular */
-  width: 40px;
-  height: 100px;
+  padding: 6.5%;
+  border-radius: 50%;
+  height: 5px;
   /* background-color: #4d2d2d; */
   color: black;
-  font-size: 16px;
+  font-size: 150%;
   transition: all 0.3s ease;
+  background-color: lightgray;
+
 }
 
 .react-calendar__tile:hover {
