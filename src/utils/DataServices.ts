@@ -1,4 +1,4 @@
-import { ILogin, IRegister } from "./Interfaces";
+import { ICalendarDay, ILogin, IRegister } from "./Interfaces";
 
 const url = "http://localhost:5295/"
 
@@ -26,5 +26,11 @@ export const Register = async (registerData: IRegister) => {
 
     const data = await res.json();
     console.log(data);
+    return data;
+}
+
+export const GetCalendarDays = async (userId: number ) => {
+    const res = await fetch(url + `Calendar/CalendarByUserId/${userId}`);
+    const data: ICalendarDay[] = await res.json();
     return data;
 }

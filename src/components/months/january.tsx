@@ -1,17 +1,36 @@
 import { Container, Modal, Button } from "react-bootstrap";
 import Calendar from "react-calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavbarComponent from "../navbar/NavbarComponent";
 import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { GetCalendarDays } from "../../utils/DataServices";
+import { ICalendarDay } from "../../utils/Interfaces";
 
 const january = () => {
 
+  
   const [show, setShow] = useState(false);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [comment, setComment] = useState<string>('');
-
+  const [calendarDays, setCalendarDays] = useState<ICalendarDay[]>([]);
+  useEffect(()=> {
+    let userId = localStorage.getItem("UserId");
+   
+    const fetchData = async () => {
+      try{
+        const days = await GetCalendarDays(Number(userId));
+        setCalendarDays(days);
+        console.log(days)
+        console.log(calendarDays)
+      }catch(error)
+      {
+        console.log("theres no user id in local storage")
+      }
+    }
+    fetchData();
+  },[])
   // Need to store a mood given the date
   // This is like key value pairs
   const [moodData, setMoodData] = useState<Map<string, { mood: string; comment: string }>>(new Map());
@@ -20,6 +39,7 @@ const january = () => {
   const handleClose = () => setShow(false);
   const handleShow = (date: Date) => {
     setSelectedDate(date);
+    // enter the day stuff
     const existingData = moodData.get(date.toDateString());
     if (existingData) {
       setSelectedMood(existingData.mood);
@@ -75,6 +95,8 @@ const january = () => {
     }
     return '';
   };
+
+
 
   return (
     <>

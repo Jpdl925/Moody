@@ -38,6 +38,7 @@ const LoginComponent = () => {
         let token = await Login(loginInfo);
         if (token && token.token) {
           localStorage.setItem("Token", token.token);
+          localStorage.setItem("UserId", token.userId);
           navigate("/calendar");
         } else {
           setErrorMessage("Invalid login credentials. Please try again.");
