@@ -1,25 +1,53 @@
 import { Container, Modal, Button } from "react-bootstrap";
 import Calendar from "react-calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavbarComponent from "../navbar/NavbarComponent";
 import "./calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { GetCalendarDays } from "../../utils/DataServices";
+import { ICalendarDay } from "../../utils/Interfaces";
 
 const january = () => {
 
+  
   const [show, setShow] = useState(false);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [comment, setComment] = useState<string>('');
-
+  const [calendarDays, setCalendarDays] = useState<ICalendarDay[]>([]);
+  useEffect(()=> {
+    let userId = localStorage.getItem("UserId");
+   
+    const fetchData = async () => {
+      try{
+        const days = await GetCalendarDays(Number(userId));
+        setCalendarDays(days);
+        console.log(days)
+        console.log(calendarDays)
+      }catch(error)
+      {
+        console.log("theres no user id in local storage")
+      }
+    }
+    fetchData();
+  },[])
   // Need to store a mood given the date
   // This is like key value pairs
-  const [moodData, setMoodData] = useState<Map<string, string>>(new Map());
+  const [moodData, setMoodData] = useState<Map<string, { mood: string; comment: string }>>(new Map());
 
   // Functions to handle modal
   const handleClose = () => setShow(false);
   const handleShow = (date: Date) => {
     setSelectedDate(date);
+    // enter the day stuff
+    const existingData = moodData.get(date.toDateString());
+    if (existingData) {
+      setSelectedMood(existingData.mood);
+      setComment(existingData.comment);
+    } else {
+      setSelectedMood('');
+      setComment('');
+    }
     setShow(true);
   };
 
@@ -32,7 +60,9 @@ const january = () => {
   const handleSubmit = () => {
     if (selectedDate) {
       // takes the previous mood and updates it to the new one from a certain day
-      setMoodData((prevMoodData) => new Map(prevMoodData.set(selectedDate.toDateString(), selectedMood)));
+      setMoodData((prevMoodData) =>
+        new Map(prevMoodData.set(selectedDate.toDateString(), { mood: selectedMood, comment }))
+      );
     }
     setSelectedMood('');
     setComment('');
@@ -54,15 +84,14 @@ const january = () => {
     };
   };
 
-  // changes the background of the date's tile once a mood is picked
   const getTileClassName = ({ date, view }: { date: Date; view: 'month' | 'year' | 'decade' | 'century' }) => {
     if (view === 'month') {
-      const mood = moodData.get(date.toDateString());
-      if (mood === 'Horrible') return 'horrible-tile';
-      if (mood === 'Bad') return 'bad-tile';
-      if (mood === 'No Complaints') return 'no-complaints-tile';
-      if (mood === 'Good') return 'good-tile';
-      if (mood === 'Amazing') return 'amazing-tile';
+      const data = moodData.get(date.toDateString());
+      if (data?.mood === 'Horrible') return 'horrible-tile';
+      if (data?.mood === 'Bad') return 'bad-tile';
+      if (data?.mood === 'No Complaints') return 'no-complaints-tile';
+      if (data?.mood === 'Good') return 'good-tile';
+      if (data?.mood === 'Amazing') return 'amazing-tile';
     }
     return '';
   };

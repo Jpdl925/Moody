@@ -19,3 +19,21 @@
     font-weight: 500;
 }
 
+.offcanvas {
+  background-color: #f8f9fa; 
+}
+
+.offcanvas .nav-link {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.offcanvas .nav-link:hover {
+  color: #007bff; 
+}
+
+@media (max-width: 1023px){
+  .logo{
+    font-size: 40px;
+  }
+}
