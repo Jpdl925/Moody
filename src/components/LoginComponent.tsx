@@ -7,6 +7,7 @@ import CarouselComponent from "./CarouselComponent";
 import { Login, Register } from "../utils/DataServices";
 import { useNavigate } from "react-router-dom";
 import { ILogin } from "../utils/Interfaces";
+import { z } from "zod";
 
 const LoginComponent = () => {
   let navigate = useNavigate();
@@ -17,10 +18,51 @@ const LoginComponent = () => {
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [validationErrors, setValidationErrors] = useState({
+    username: "",
+    password: "",
+  });
+
+  const formSchema = z.object({
+    username: z.
+    string()
+    .nonempty("Username is required.")
+    .min(4, "Username must be at least 4 characters long")
+    ,
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters long."),
+  });
 
   const changeForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLogin(!isLogin);
+    setErrorMessage("");
+    setValidationErrors({ username: "", password: "" });
+  };
+
+  const validateForm = () => {
+    try {
+      formSchema.parse({ username, password });
+      setValidationErrors({ username: "", password: "" });
+      return true;
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        const errors: { username: string; password: string } = {
+          username: "",
+          password: "",
+        };
+        err.errors.forEach((error) => {
+          if (error.path[0] === "username") {
+            errors.username = error.message;
+          } else if (error.path[0] === "password") {
+            errors.password = error.message;
+          }
+        });
+        setValidationErrors(errors);
+      }
+      return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,8 +70,13 @@ const LoginComponent = () => {
     setLoading(true);
     setErrorMessage("");
 
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
+
     if (isLogin) {
-      let loginInfo = {
+      let loginInfo: ILogin = {
         username: username,
         password: password,
       };
@@ -115,7 +162,11 @@ const LoginComponent = () => {
                   className="p-3 input-style"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  isInvalid={!!validationErrors.username}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {validationErrors.username}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group controlId="password" className="my-4">
@@ -125,7 +176,11 @@ const LoginComponent = () => {
                   className="p-3 input-style"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  isInvalid={!!validationErrors.password}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {validationErrors.password}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <div className="text-center mt-3 d-flex flex-column align-items-center">
@@ -150,6 +205,9 @@ const LoginComponent = () => {
                     : "Already have an account?"}
                 </button>
               </div>
+              {errorMessage && (
+                <p className="text-danger mt-3">{errorMessage}</p>
+              )}
             </Form>
           </Col>
 
@@ -194,3 +252,4 @@ const LoginComponent = () => {
 };
 
 export default LoginComponent;
+
