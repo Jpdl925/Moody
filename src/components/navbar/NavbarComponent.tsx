@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbar.css";
 import calendarLogo from "../../assets/calendar.png";
+import logoutImg from "../../assets/logout.png";
 import { Navbar, Container, Offcanvas, Nav, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavbarComponent = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleOffcanvasToggle = () => {
     setShowOffcanvas(!showOffcanvas);
@@ -14,6 +17,19 @@ const NavbarComponent = () => {
 
   const closeOffcanvas = () => {
     setShowOffcanvas(false);
+  };
+
+  useEffect(() => {
+    let userId = Number(localStorage.getItem("UserId"));
+    if (userId) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("UserId");
+    localStorage.removeItem("Token");
+    navigate("/");
   };
 
   return (
@@ -32,21 +48,29 @@ const NavbarComponent = () => {
           <Col xs={8} className="text-center">
             <Navbar.Brand
               as={Link}
-              to="/"
+              to={isLoggedIn ? "/Calendar" : "/"}
               className="logo d-flex justify-content-center align-items-center"
-              style={{ gap: "10px" }}
+              style={{ gap: "10px", fontSize: "30px", fontWeight: "500" }}
             >
-              <img src={calendarLogo} alt="Moody Logo" width={40} height={40} />
+              <img src={calendarLogo} alt="Moody Logo" width={30} height={30} />
               MOODY
             </Navbar.Brand>
           </Col>
         </Row>
+
         <Row className="d-none d-lg-flex align-items-center w-100">
-          <Col />
+          {isLoggedIn ? (
+            <Col onClick={handleLogout}>
+              <img src={logoutImg} alt="" width={45} className="ms-4" style={{cursor:'pointer'}} />
+            </Col>
+          ) : (
+            <Col />
+          )}
+
           <Col className="d-flex justify-content-center">
             <Navbar.Brand
               as={Link}
-              to="/"
+              to={isLoggedIn ? "/Calendar" : "/"}
               className="logo d-flex align-items-center"
               style={{ gap: "10px" }}
             >
@@ -56,17 +80,21 @@ const NavbarComponent = () => {
           </Col>
           <Col className="d-flex justify-content-end">
             <Nav className="p-0 my-0 ms-0 me-4 routes">
-              <Nav.Link as={Link} to="/Calendar" className="p-0 m-0">
-                Calendar
-              </Nav.Link>
-              <Nav.Link as={Link} to="/AI" className="p-0 m-0">
-                Moody.ai
-              </Nav.Link>
+              {isLoggedIn && (
+                <Nav.Link as={Link} to="/Calendar" className="p-0 m-0">
+                  Calendar
+                </Nav.Link>
+              )}
+              {isLoggedIn && (
+                <Nav.Link as={Link} to="/AI" className="p-0 m-0">
+                  Moody.ai
+                </Nav.Link>
+              )}
             </Nav>
           </Col>
         </Row>
 
-        <Offcanvas
+        {isLoggedIn && <Offcanvas
           show={showOffcanvas}
           onHide={closeOffcanvas}
           placement="start"
@@ -82,9 +110,12 @@ const NavbarComponent = () => {
               <Nav.Link as={Link} to="/AI" onClick={closeOffcanvas}>
                 Moody.ai
               </Nav.Link>
+              <Nav.Link as={Link} to="/" onClick={handleLogout}>
+                Logout
+              </Nav.Link>
             </Nav>
           </Offcanvas.Body>
-        </Offcanvas>
+        </Offcanvas>}
       </Container>
     </Navbar>
   );

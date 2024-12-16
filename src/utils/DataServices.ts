@@ -11,7 +11,7 @@ export const Login = async (loginData: ILogin) => {
         body: JSON.stringify(loginData)
     })
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     return data;
 }
 
@@ -33,4 +33,27 @@ export const GetCalendarDays = async (userId: number ) => {
     const res = await fetch(url + `Calendar/CalendarByUserId/${userId}`);
     const data: ICalendarDay[] = await res.json();
     return data;
+}
+
+export const CreateCalendarDay = async (newCalanderDay: ICalendarDay) => {
+    const res = await fetch(url + 'Calendar/AddDay', {
+        method: 'POST',
+        headers : {
+            "Content-Type": "application/json"
+       },
+       body: JSON.stringify(newCalanderDay)
+    })
+    const data = await res.json();
+    return data
+}
+export const UpdateDay = async (newCalanderDay: ICalendarDay) => {
+    const res = await fetch(url + 'Calendar/UpdateDay', {
+        method: 'POST',
+        headers : {
+            "Content-Type": "application/json"
+       },
+       body: JSON.stringify(newCalanderDay)
+    })
+    const data = await res.json();
+    return data
 }

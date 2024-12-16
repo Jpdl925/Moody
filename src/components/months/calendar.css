@@ -93,26 +93,60 @@ body{
   } */
 
 .horrible-tile {
-  background-color: red !important;
+  background-color: rgb(21, 21, 63) !important;
   color: white;
 }
 
 .bad-tile {
-  background-color: orange !important;
+  background-color: maroon !important;
   color: white;
 }
 
 .no-complaints-tile {
-  background-color: black !important;
+  background-color: palevioletred !important;
   color: white;
 }
 
 .good-tile {
-  background-color: green !important;
+  background-color: yellowgreen !important;
   color: white;
 }
 
 .amazing-tile {
-  background-color: lime !important;
+  background-color: green !important;
   color: black;
+}
+
+
+@media (max-width: 600px) {
+  .react-calendar__navigation {
+    flex-direction: row; 
+    padding: 2px 2px; 
+  }
+
+  .react-calendar__navigation__label {
+    font-size: 12px; 
+  }
+
+  .react-calendar__navigation__arrow {
+    width: 20px;
+    height: 20px; 
+  }
+}
+
+@media (max-width: 320px) {
+  .react-calendar__navigation {
+    flex-direction: row; 
+    padding: 0px; 
+  }
+
+  .react-calendar__navigation__label {
+    font-size: 12px; 
+    padding: 0px !important;
+  }
+
+  .react-calendar__navigation__arrow {
+    width: 20px;
+    height: 20px; /* Smaller arrows */
+  }
 }
