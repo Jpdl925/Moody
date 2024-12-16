@@ -1,6 +1,6 @@
 import { ICalendarDay, ILogin, IRegister } from "./Interfaces";
 
-const url = "http://localhost:5295/"
+const url = "https://johnnymoodyapi.azurewebsites.net/"
 
 export const Login = async (loginData: ILogin) => {
     const res = await fetch(url + 'User/Login', {

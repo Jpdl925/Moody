@@ -19,7 +19,7 @@ const january = () => {
     date: new Date(),
     userId: Number(localStorage.getItem("UserId")),
   });
-  const [comment, setComment] = useState<string>('');
+  const [_comment, setComment] = useState<string>('');  // eslint-disable-line no-unused-vars
   const [calendarDays, setCalendarDays] = useState<ICalendarDay[]>([]);
   useEffect(() => {
     let userId = localStorage.getItem("UserId");
@@ -163,7 +163,7 @@ const january = () => {
           onClickDay={(date) => handleShow(date)}
           tileClassName={({ date }) => getTileClassName({ date })}
           // Grabs only first letter of day for text at top
-          formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
+          formatShortWeekday={(_locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
         />
       </Container>
 

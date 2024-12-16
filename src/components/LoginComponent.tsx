@@ -6,13 +6,11 @@ import Image from "../assets/login-image.jpg";
 import CarouselComponent from "./CarouselComponent";
 import { Login, Register } from "../utils/DataServices";
 import { useNavigate } from "react-router-dom";
-import { ILogin } from "../utils/Interfaces";
 import { z } from "zod";
 
 const LoginComponent = () => {
   let navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
-  const [id, setId] = useState(0);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -100,7 +98,7 @@ const LoginComponent = () => {
       }
     } else {
       let registerInfo = {
-        id: id,
+        id: 0,
         userName: username,
         password: password,
       };

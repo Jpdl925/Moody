@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import NavbarComponent from './navbar/NavbarComponent'
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import runChat from '../configs/gemini'
