@@ -33,7 +33,7 @@ const january = () => {
           day.date = date
         })
         setCalendarDays(days);
-        // console.log(days)
+
       } catch (error) {
         console.log("theres no user id in local storage")
       }
